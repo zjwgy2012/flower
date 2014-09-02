@@ -1,6 +1,10 @@
 <?php
-
-class HomeController extends BaseController {
+/*
+ * author zhangjingwei
+ * created_at 2014-06-17
+ * 登陆,注册
+ */
+class TestController extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -15,9 +19,16 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
-	{
-		return View::make('hello');
+	public function test()
+    {
+        $all = DB::table('test1')->get();
+        echo '<pre>';
+        foreach($all as $one){
+            var_dump((float)($one->token));
+        }
+        //echo 'test';
+        //return View::make('dashboard')->with('last_login',Session::get('last_login','0000-00-00 00:00:00'));
 	}
+  
 
 }

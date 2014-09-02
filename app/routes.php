@@ -11,7 +11,16 @@
 |
 */
 
-Route::get('/', function()
+//测试
+Route::get('test',array('uses'=>'TestController@test'));
+//后台
+
+//前台
+
+//微信
+Route::resource('weixin','WeixinController');
+//404
+Route::get('404', function()
 {
-	return View::make('hello');
+    App::abort(404);
 });
