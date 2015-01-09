@@ -21,11 +21,13 @@ class TestController extends BaseController {
 
 	public function test()
     {
+        echo 'welcome to my house!';
+        /*
         $all = DB::table('test1')->get();
         echo '<pre>';
         foreach($all as $one){
             var_dump((float)($one->token));
-        }
+        }*/
         //echo 'test';
         //return View::make('dashboard')->with('last_login',Session::get('last_login','0000-00-00 00:00:00'));
 	}
