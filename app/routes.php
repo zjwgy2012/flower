@@ -12,10 +12,11 @@
 */
 
 //测试
-Route::get('test',array('uses'=>'TestController@test'));
 //后台
+Route::get('admin/test',array('uses'=>'AdminTestController@test'));
 
 //前台
+Route::get('user/test',array('uses'=>'UserTestController@test'));
 
 //微信
 Route::resource('weixin','WeixinController');
