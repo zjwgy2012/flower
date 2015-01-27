@@ -89,18 +89,19 @@ Route::filter('csrf', function()
 	}
 });
 
-Route::filter('weixin',function(){
+Route::filter('weixin',function()
+{
     $signature = Input::get('signature');
     $timestamp = Input::get('timestamp');
     $nonce = Input::get('nonce');
-
-    $token = 'zhangjingwei';
-
+    $token = Config::get('app.Token');
     $our_signature = array($token,$timestamp,$nonce);
     sort($our_signature,SORT_STRING);
     $our_signature = implode($our_signature);
     $our_signature = sha1($our_signature);
 
     if($our_signature != $signature)
+    {
         return false;
+    }
 });

@@ -13,13 +13,24 @@
 
 //测试
 //后台
-Route::get('admin/test',array('uses'=>'AdminTestController@test'));
+Route::group(array('prefix' => 'admin'),function()
+{
+    Route::get('test',array('uses'=>'AdminTestController@test'));
+});
 
 //前台
-Route::get('user/test',array('uses'=>'UserTestController@test'));
+Route::group(array('prefix' => 'user'),function()
+{
+    Route::get('test',array('uses'=>'UserTestController@test'));
+});
 
 //微信
-Route::resource('weixin','WeixinController');
+Route::group(array('prefix' => 'weixin'),function()
+{
+    Route::resource('/','WeixinController');
+    Route::get('card',array('uses'=>'WeixinController@card'));
+    Route::post('card',array('uses'=>'WeixinController@card'));
+});
 //404
 Route::get('404', function()
 {

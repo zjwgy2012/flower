@@ -24,7 +24,7 @@ class WeixinController extends BaseController {
 	 */
 	public function create()
 	{
-        $appID = Config::get('app.appID');
+        $appID     = Config::get('app.appID');
         $appsecret = Config::get('app.appsecret');
         $res = file_get_contents("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appID}&secret={$appsecret}");
         $res = json_decode($res,true);
@@ -32,9 +32,9 @@ class WeixinController extends BaseController {
         $selfView = array(
             'button' => array(
                 array(
-                    'type' => 'click',
-                    'name' => '诗词',
-                    'key' => 'V1001_TODAY_MUSIC',  
+                    'type' => 'view',
+                    'name' => '优惠券',
+                    'url' => 'http://115.29.51.171/weixin',  
                 ),
                 array(
                     "name" => "菜单",
@@ -43,6 +43,11 @@ class WeixinController extends BaseController {
                             "type" => "view",
                             "name" => "搜索",
                             "url" => "http://www.sogou.com/",
+                        ),
+                        array(
+                            "type" => "view",
+                            "name" => "card",
+                            "url" => "http://115.29.51.171/weixin/card",
                         ),
                         array(
                             "type" => "click",
@@ -135,5 +140,14 @@ class WeixinController extends BaseController {
 		//
 	}
 
+    public function card(){
+        $appInfo = array();
+        $appInfo['appID']     = Config::get('app.appID');
+        $appInfo['signature'] = Input::get('signature');
+        $appInfo['timestamp'] = Input::get('timestamp');
+        $appInfo['nonce'] = Input::get('nonce');
+        debug($appInfo);exit;
+        return View::make('admin.card')->with('appInfo',$appInfo);
+    }
 
 }
